@@ -89,3 +89,10 @@ class CriarProduto(View):
 
         return redirect('stock:criar_produto')
 
+
+class ListarProdutos(View):
+    template_name = 'stock/produtos/listar.html'
+
+    def get(self, request):
+        produtos = Produto.objects.all()
+        return render(request, self.template_name, {'produtos': produtos})

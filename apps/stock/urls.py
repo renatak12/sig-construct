@@ -10,4 +10,5 @@ urlpatterns = [
     path('excluir/<str:categoria_id>/categoria', views.ExcluirCategoria.as_view(), name='excluir_categoria'),
     
     path('criar/produto', views.CriarProduto.as_view(), name='criar_produto'),
+    path('listar/produtos', views.ListarProdutos.as_view(), name='listar_produtos'),
 ]
