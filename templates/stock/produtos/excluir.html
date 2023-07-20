@@ -193,17 +193,17 @@
             </a>
             <ul id="produtos-nav" class="nav-content collapse show" data-bs-parent="#sidebar-nav">
                 <li>
-                    <a href="{% url 'stock:criar_categoria' %}">
+                    <a href="{% url 'stock:listar_categorias' %}" class="active">
                         <i class="bi bi-circle"></i><span>Categorias</span>
                     </a>
                 </li>
                 <li>
-                    <a href="{% url 'stock:criar_produto' %}">
+                    <a href="">
                         <i class="bi bi-circle"></i><span>Cadastrar</span>
                     </a>
                 </li>
                 <li>
-                    <a href="stock:listar_produtos" class="active">
+                    <a href="">
                         <i class="bi bi-circle"></i><span>Listar</span>
                     </a>
                 </li>
@@ -291,58 +291,19 @@
 </aside>
 <main id="main" class="main">
     <div class="pagetitle filter" style="display: flex; justify-content: space-between;">
-        {% if messages %}
-        <div class="messages">
-            {% for message in messages %}
-            <p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
-            {% endfor %}
-        </div>
-        {% endif %}
-        <h1 style="margin: 0;">Produtos Cadastrados</h1>
-        <a class="icon btn btn-secondary btn-sm" href="{% url 'accounts:logado' %}" style="margin-left: auto;">Voltar</a>
+        <h1 style="margin: 0;">Excluir Produto</h1>   
     </div>
     <section class="section dashboard">
         <div class="row">
             <div class="col-12">
                 <div class="card recent-sales overflow-auto">
                     <div class="card-body">
-                        {% if produtos|length > 0 %}
-                        <table class="table table-borderless mt-4">
-                            <thead>
-                              <tr>
-                                <th scope="col">Imagem</th>
-                                <th scope="col">Tipo</th>
-                                <th scope="col">Produto</th>
-                                <th scope="col">Descrição</th>
-                                <th scope="col">Preço</th>
-                                <th scope="col">Qtde.</th>
-                                <th class="text-center" scope="col">Ações</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                                {% for produto in produtos %}
-                              <tr>
-                                <td >
-                                    {% if produto.imagem %}
-                                    <img src="{{ produto.imagem.url }}" style="width: 80px; border-radius: 3%;">
-                                    {% else %}
-                                        <p>Sem imagem</p>
-                                    {% endif %}
-                                </td>
-                                <td scope="row">{{ produto.categoria.nome }}</td>
-                                <td scope="row">{{ produto.nome }}</td>
-                                <td scope="row">{{ produto.descricao }}</td>
-                                <td scope="row">{{ produto.preco }}</td>
-                                <td scope="row">{{ produto.quantidade_estoque }}</td>
-                                <td class="text-center">
-                                    <a href="{% url 'stock:editar_produto' produto.id %}" class="btn btn-primary btn-sm" title="Editar"><i class="bi bi-pencil"></i></a>
-                                    <a href="{% url 'stock:excluir_produto' produto.id %}" class="btn btn-danger btn-sm" title="Remover"><i class="bi bi-trash"></i></a>
-                                </td>
-                              </tr>
-                              {% endfor %}
-                            </tbody>
-                        </table>
-                        {% endif %}
+                        <p class="mt-4">Você tem certeza que deseja excluir Produto "<b>{{ produto.nome }}</b>"?</p>
+                        <form method="post">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-success btn-sm">Confirmar</button>
+                            <a class="btn btn-secondary btn-sm" href="{% url 'stock:listar_produtos' %}" style="margin-left: auto;">Voltar</a>
+                        </form>
                     </div>
                 </div>
             </div>
