@@ -20,7 +20,7 @@ class CriarCategoria(View):
         nome = request.POST.get('nome')
 
         # Cria a categoria com os dados recebidos do formulário
-        categoria = Categoria.objects.create(nome=nome)
+        Categoria.objects.create(nome=nome)
         messages.success(request, 'Categoria criada com sucesso!')
         return redirect('stock:criar_categoria')
 
@@ -194,10 +194,10 @@ class RealizarVenda(View):
         cliente_id = request.POST.get('cliente')
         produto_id = request.POST.get('produto')
         quantidade = int(request.POST.get('quantidade', 0))
-        parcelamento = int(request.POST.get('parcelamento', 1))
+        #parcelamento = int(request.POST.get('parcelamento', 1))
 
         cliente = get_object_or_404(Cliente, id=cliente_id)
-        produto = get_object_or_404(Produto, id=produto_id)
+        #produto = get_object_or_404(Produto, id=produto_id)
         
         produto = get_object_or_404(Produto, id=produto_id)
         if produto.quantidade_estoque < quantidade:
