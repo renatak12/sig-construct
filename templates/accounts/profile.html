@@ -282,13 +282,12 @@
 {% block main %}
 <main id="main" class="main">
     <div class="pagetitle">
-      <h1>Perfil</h1>
-      <nav>
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item">Usuário</li>
-          <li class="breadcrumb-item active">Perfil</li>
-        </ol>
-      </nav>
+        <div class="pagetitle filter" style="display: flex; justify-content: space-between;">
+            <h1 style="margin: 0;">Perfil</h1>
+            <a class="btn btn-secondary btn-sm" href="{% url 'accounts:logado' %}" style="margin-left: auto;">
+                <span> Voltar</span>
+            </a>
+        </div>
     </div><!-- End Page Title -->
 
     <section class="section profile">
