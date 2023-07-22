@@ -194,7 +194,14 @@ class RealizarVenda(View):
         cliente_id = request.POST.get('cliente')
         produto_id = request.POST.get('produto')
         quantidade = int(request.POST.get('quantidade', 0))
+<<<<<<< HEAD
         parcelamento = int(request.POST.get('parcelamento', 1))
+=======
+        #parcelamento = int(request.POST.get('parcelamento', 1))
+
+        cliente = get_object_or_404(Cliente, id=cliente_id)
+        #produto = get_object_or_404(Produto, id=produto_id)
+>>>>>>> e6063d7096759b5f980f79c73f93313c434d15fa
         
         cliente = get_object_or_404(Cliente, id=cliente_id) 
         produto = get_object_or_404(Produto, id=produto_id)
