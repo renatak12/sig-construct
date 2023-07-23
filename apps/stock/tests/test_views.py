@@ -407,6 +407,10 @@ class ExcluirVendaTest(TestCase):
         # Check the quantity of the product is restored to the stock
         produto.refresh_from_db()
         self.assertEqual(produto.quantidade_estoque, 15)
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 874410679179b8c209586f42e76527bd4a64070f
 
 
 class RealizarVendaViewTest(TestCase):
@@ -460,3 +464,8 @@ class RealizarVendaViewTest(TestCase):
         # Verifique se a quantidade em estoque do produto foi corretamente atualizada após a venda
         produto_atualizado = Produto.objects.get(id=produto.id)
         self.assertEqual(produto_atualizado.quantidade_estoque, 90)
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> e6063d7096759b5f980f79c73f93313c434d15fa
+>>>>>>> 874410679179b8c209586f42e76527bd4a64070f
