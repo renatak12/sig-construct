@@ -196,10 +196,6 @@ class RealizarVenda(View):
         quantidade = int(request.POST.get('quantidade', 0))
         parcelamento = int(request.POST.get('parcelamento', 1))
 
-        cliente = get_object_or_404(Cliente, id=cliente_id)
-        produto = get_object_or_404(Produto, id=produto_id)
-        
-        produto = get_object_or_404(Produto, id=produto_id)
         if produto.quantidade_estoque < quantidade:
             # Caso a quantidade disponível seja insuficiente, exiba uma mensagem de erro
             messages.error(request, "Quantidade insuficiente em estoque.")
@@ -209,7 +205,6 @@ class RealizarVenda(View):
         valor_total = quantidade * preco
         
         forma_pagamento = request.POST.get('forma_pagamento')
-        parcelamento = int(request.POST.get('parcelamento', 1))
 
         if forma_pagamento in ["dinheiro", "pix", "debito"]:
             desconto = Decimal('0.1')  # 10% de desconto
