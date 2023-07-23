@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-{% load custom2_tags %}
+{% load custom_tags_stock %}
 
 {% block header %}
 <header id="header" class="header fixed-top d-flex align-items-center">
@@ -313,7 +313,7 @@
                             <p style="margin-bottom: 5px;">Parcelamento: {{ venda.parcelamento }}</p>
                             <p style="margin-bottom: 5px;">Valor da Parcela: R$ {{ venda.valor_parcela }}</p>
                             <p style="margin-bottom: 5px;">Valor Total da Compra: R$ {{ venda.valor_total_compra }}</p>
-                            <p style="margin-bottom: 5px;">Desconto: R$ {{ venda.desconto }}</p>
+                            <p style="margin-bottom: 5px;">Desconto: {{ venda.desconto }} %</p>
                             <hr>
                             <p class="text-center" style="margin-bottom: 5px;">Responsável pela Venda: {{ user.nome }}</p>
                         </div>

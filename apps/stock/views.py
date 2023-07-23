@@ -20,7 +20,7 @@ class CriarCategoria(View):
         nome = request.POST.get('nome')
 
         # Cria a categoria com os dados recebidos do formulário
-        categoria = Categoria.objects.create(nome=nome)
+        Categoria.objects.create(nome=nome)
         messages.success(request, 'Categoria criada com sucesso!')
         return redirect('stock:criar_categoria')
 
@@ -195,7 +195,10 @@ class RealizarVenda(View):
         produto_id = request.POST.get('produto')
         quantidade = int(request.POST.get('quantidade', 0))
         parcelamento = int(request.POST.get('parcelamento', 1))
-
+        
+        cliente = get_object_or_404(Cliente, id=cliente_id) 
+        produto = get_object_or_404(Produto, id=produto_id)
+                
         if produto.quantidade_estoque < quantidade:
             # Caso a quantidade disponível seja insuficiente, exiba uma mensagem de erro
             messages.error(request, "Quantidade insuficiente em estoque.")
@@ -209,6 +212,7 @@ class RealizarVenda(View):
         if forma_pagamento in ["dinheiro", "pix", "debito"]:
             desconto = Decimal('0.1')  # 10% de desconto
             valor_total_compra = valor_total * (1 - desconto)
+                        
             if parcelamento > 1:
                 valor_parcela = valor_total_compra / parcelamento
             else:
@@ -233,12 +237,16 @@ class RealizarVenda(View):
             valor_total_compra=valor_total_compra,
             desconto=desconto if forma_pagamento in ["dinheiro", "pix", "debito"] else 0,
         )
-        venda.save()
         
         with transaction.atomic():
             produto.quantidade_estoque -= quantidade
             produto.save()
-
+            
+            
+            venda.save()            
+            
+            
+        messages.success(request, 'Venda realizada com sucesso!')
         return redirect('stock:listar_vendas')
     
 

@@ -281,13 +281,6 @@
 </aside>
 <main id="main" class="main">
     <div class="pagetitle filter" style="display: flex; justify-content: space-between;">
-        {% if messages %}
-        <div class="messages">
-            {% for message in messages %}
-            <p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
-            {% endfor %}
-        </div>
-        {% endif %}
         <h1 style="margin: 0;">Produtos Cadastrados</h1>
         <a class="icon btn btn-secondary btn-sm" href="{% url 'accounts:logado' %}" style="margin-left: auto;">Voltar</a>
     </div>
